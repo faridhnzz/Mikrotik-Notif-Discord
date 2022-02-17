@@ -15,6 +15,7 @@ app.get('/', async (req, res) => {
     name: 'Mikrotik Notif Discord',
     author: 'Farid Nizam <me@farid.cyou>',
     description: 'Monitor your mikrotik devices for sending logs from hostpot/vpn/pppoe/netwatch/etc to your discord.',
+    how_to_use: 'https://github.com/faridnizam/Mikrotik-Notif-Discord',
     endpoint: `${fullUrl}[ID_WEBHOOK_DISCORD]/[TOKEN_WEBHOOK_DISCORD]/[YOUR_TEXT]`,
   });
 });
@@ -24,7 +25,8 @@ app.get('/:id/:token/:text', async (req, res) => {
   const hook = new Webhook(`https://discord.com/api/webhooks/${encodeURIComponent(id)}/${encodeURIComponent(token)}`);
 
   try {
-    await hook.send(text);
+    const chat = text.replace(/\+/g, ' ');
+    await hook.send(chat);
     return res.status(200).send('Successfully sent webhook!');
   } catch (err) {
     return res.status(404).send('Parameters Not Set');
