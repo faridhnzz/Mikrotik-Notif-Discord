@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "author": "Farid Nizam <me@farid.cyou>",
   "main": "index.js",
-  "license": "GPL",
+  "type": "module",
+  "license": "MIT",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
